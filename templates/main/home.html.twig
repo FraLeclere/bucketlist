@@ -1,15 +1,7 @@
 {% extends "base.html.twig" %}
 
-{# Commentaire Twig #}
-
-{{  }}{# affiche ce qui est entre les {{ }} pour afficher des variable par exemple #}
-
-{% set product = "computeur" %}{# Tout le reste fct, decla variable etc #}
-
-{% block title %}
-    Accueil
-{% endblock %}
+{% block title %}{{ parent() }} - Accueil{% endblock %}
 
 {% block body %}
-    <h1>Bonjour depuis Twig</h1>
+    <h1 class="text-center">Bonjour depuis Twig</h1>
 {% endblock %}
