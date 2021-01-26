@@ -1,11 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-
-{% endblock %}
+{% block title %}{{ wish.title }} | {{ parent() }}{% endblock %}
 
 {% block body %}
-    <h1 class="text-center">Wish n°{{ id }}</h1>
+    <h1 class="text-center">{{ wish.title }}</h1>
+    <div>
+        <ul>
+            <li>Description : {{ wish.description }}</li>
+            <li>Author : {{ wish.author }}</li>
+            <li>Created date :{{ wish.dateCreated |format_datetime('short', 'none', locale='fr') }}</li>
+        </ul>
+    </div>
 {% endblock %}
 
 

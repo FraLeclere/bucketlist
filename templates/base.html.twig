@@ -9,6 +9,7 @@
         <link rel="icon" href="{{ asset('img/favicon.png') }}">
         <title>{% block title %}Bucket List{% endblock %}</title>
     </head>
+    <body class="is-preload">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ path('main_home') }}">BucketList <img src="{{ asset("img/logo.svg") }}" alt="" width="30" height="24" class="d-inline-block align-top"></a>
@@ -29,14 +30,18 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ path('main_legal_stuff') }}" title="Legal notices">Legal notices</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ path('add_wish') }}" title="Add Wish">Add Wish</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <body class="is-preload">
+    <div class="container mb-4 w90">
         {% block body %}{% endblock %}
+    </div>
+        <footer class="text-center"> &copy BucketList {{ "now"|date("Y") }}</footer>
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        {% block js %}{% endblock %}
     </body>
-    <footer class="text-center"> &copy BucketList {{ "now"|date("Y") }}</footer>
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    {% block js %}{% endblock %}
 </html>
