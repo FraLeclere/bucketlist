@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Categorie;
 use App\Entity\Wish;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,6 +18,12 @@ class WishType extends AbstractType
             ->add('title')
             ->add('description')
             ->add('author')
+            ->add('categories', EntityType::class, [
+                'class' => Categorie::class,
+                'choice_label' => 'name',
+                'multiple' => false,
+                'expanded' => true,
+            ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Create',
                 'attr' => ['class' => 'btn btn-outline-success mt-3'],

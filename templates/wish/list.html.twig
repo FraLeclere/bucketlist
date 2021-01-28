@@ -5,11 +5,32 @@
 {% block body %}
     <h1 class="text-center">Wish List</h1>
 
+    <div class="card">
+        <div class="card-body row">
+                <div class="col-9">
+                    Wishes
+                </div>
+                <div class="col-3">
+                   Categories
+                </div>
+        </div>
+    </div>
     {% for wish in wishes %}
     <a href="{{ path('wish_detail', {id: wish.id }) }}">
         <div class="card">
-            <div class="card-body">
-                {{ wish.title }}
+            <div class="card-body row">
+                {% if wish.categories is not null %}
+                    <div class="col-9">
+                        {{ wish.title }}
+                    </div>
+                    <div class="col-3">
+                        {{ wish.categories.name }}
+                    </div>
+                {% else %}
+                    <div class="col-9">
+                        {{ wish.title }}
+                    </div>
+                {% endif %}
             </div>
         </div>
     </a>

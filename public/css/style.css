@@ -25,3 +25,11 @@ footer {
 .w90{
     max-width: 90%;
 }
+
+.printalert-success{
+    color: #22746E;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: "Impact";
+    font-size: 1.2em;
+}

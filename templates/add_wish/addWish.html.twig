@@ -3,10 +3,10 @@
 {% block title %}{{ parent() }} - Add Wish{% endblock %}
 
 {% block body %}
-    <h1>Add Wish <3</h1>
+    <h1>Add Wish</h1>
 
     <div class="col-6 mx-auto">
-        {{ form(wish_form) }}
+        {{ form(wish_form , {attr: {'novalidate': 'novalidate'}}) }}
     </div>
 
 {% endblock %}

@@ -25,19 +25,27 @@
                         <a class="nav-link active" aria-current="page" href="{{ path('wish_list') }}" title="Go to Wish List">Wishes</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ path('add_wish') }}" title="Add Wish">Add Wish</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ path('main_about_us') }}" title="About us">About us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ path('main_legal_stuff') }}" title="Legal notices">Legal notices</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ path('add_wish') }}" title="Add Wish">Add Wish</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
     <div class="container mb-4 w90">
+        {# read and display all flash messages #}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash-{{ label }} text-center printalert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
         {% block body %}{% endblock %}
     </div>
         <footer class="text-center"> &copy BucketList {{ "now"|date("Y") }}</footer>

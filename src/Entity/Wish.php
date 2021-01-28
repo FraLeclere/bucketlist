@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\WishRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=WishRepository::class)
@@ -18,6 +19,14 @@ class Wish
     private $id;
 
     /**
+     * @Assert\NotBlank(message="Your Bucket must have a title!")
+     * @Assert\Length(
+     *     min=4,
+     *     max=40,
+     *     minMessage="Too short! 4 characters minimum!",
+     *     maxMessage="Too long! 40 characters maximum!",
+     * )
+     *
      * @ORM\Column(type="string" , length=250, nullable=false)
      */
     private $title;
@@ -41,6 +50,11 @@ class Wish
      * @ORM\Column(type="datetime" ,nullable=false)
      */
     private $dateCreated;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="wishes")
+     */
+    private $categories;
 
     public function getId(): ?int
     {
@@ -126,6 +140,21 @@ class Wish
     {
         $this->dateCreated = $dateCreated;
     }
+
+
+
+    public function getCategories(): ?Categorie
+    {
+        return $this->categories;
+    }
+
+    public function setCategories(?Categorie $categories): self
+    {
+        $this->categories = $categories;
+
+        return $this;
+    }
+
 
 
 }
