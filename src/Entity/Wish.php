@@ -54,7 +54,7 @@ class Wish
     /**
      * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="wishes")
      */
-    private $categories;
+    private $category;
 
     public function getId(): ?int
     {
@@ -143,14 +143,14 @@ class Wish
 
 
 
-    public function getCategories(): ?Categorie
+    public function getCategory(): ?Categorie
     {
-        return $this->categories;
+        return $this->category;
     }
 
-    public function setCategories(?Categorie $categories): self
+    public function setCategory(?Categorie $category): self
     {
-        $this->categories = $categories;
+        $this->category = $category;
 
         return $this;
     }

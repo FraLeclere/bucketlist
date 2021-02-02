@@ -9,8 +9,8 @@
             <li>Description : {{ wish.description }}</li>
             <li>Author : {{ wish.author }}</li>
             <li>Created date :{{ wish.dateCreated |format_datetime('short', 'none', locale='fr') }}</li>
-            {% if wish.categories is not null %}
-                <li>Categorie : {{ wish.categories.name }}</li>
+            {% if wish.category is not null %}
+                <li>Categorie : {{ wish.category.name }}</li>
             {% else %}
                 <li>Categorie : Not define</li>
             {% endif %}
