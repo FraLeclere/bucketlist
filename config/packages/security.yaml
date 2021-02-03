@@ -23,6 +23,13 @@ security:
                     - App\Security\AppAuthenticator
             logout:
                 path: app_logout
+
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 6048000 #10 semaines
+                path: /
+
+
                 # where to redirect after logout
                 # target: app_any_route
                 # where to redirect after logout
@@ -37,5 +44,11 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/admin/new_admin$, roles: ROLE_SUPER_ADMIN }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/add-wish, roles: ROLE_USER }
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN

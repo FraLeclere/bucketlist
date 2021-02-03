@@ -10,13 +10,13 @@
 
     {% if app.user %}
         <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+            You are logged in as {{ app.user.Pseudo }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
     {% endif %}
 
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email/Pseudo</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control col-3" required autofocus>
+    <label for="inputUsername">Login : Email/Pseudo</label>
+    <input type="text" value="{{ last_username }}" name="login" id="inputUsername" class="form-control col-3" required autofocus>
     <label for="inputPassword">Password</label>
     <input type="password" name="password" id="inputPassword" class="form-control" required>
 
@@ -24,16 +24,14 @@
            value="{{ csrf_token('authenticate') }}"
     >
 
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
+{#        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+        See https://symfony.com/doc/current/security/remember_me.html#}
 
-        <div class="checkbox mb-3">
+        <div class="checkbox mt-2">
             <label>
                 <input type="checkbox" name="_remember_me"> Remember me
             </label>
         </div>
-    #}
 
     <button class="btn btn-lg btn-outline-success mt-2" type="submit">
         Sign in

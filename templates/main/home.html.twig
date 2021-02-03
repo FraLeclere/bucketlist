@@ -3,5 +3,13 @@
 {% block title %}{{ parent() }} - Accueil{% endblock %}
 
 {% block body %}
-    <h1 class="text-center">Home</h1>
+    {% if app.user %}
+        <h1 class="text-center">
+            Hello {{ app.user.pseudo }}
+        </h1>
+    {% else %}
+        <h1 class="text-center">
+            Hello welcome to BucketList
+        </h1>
+    {% endif %}
 {% endblock %}

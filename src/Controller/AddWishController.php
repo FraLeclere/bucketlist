@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Wish;
 use App\Form\WishType;
+use App\TextValidation\Censurator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,9 +16,12 @@ class AddWishController extends AbstractController
     /**
      * @Route("/add-wish", name="add_wish")
      */
-    public function create(Request $request, EntityManagerInterface $entityManager): Response
+    public function create(Request $request, EntityManagerInterface $entityManager, Censurator $censurator): Response
     {
         $newWish = new Wish();
+
+        $user = $this->getUser();
+        $newWish->setAuthor($user->getUsername());
 
         //instance du form en lui associant notre entité
         $form = $this->createForm(WishType::class, $newWish);
@@ -30,6 +34,14 @@ class AddWishController extends AbstractController
             //hydrater les propriété manquante
             $newWish->setIsPublished(true);
             $newWish->setDateCreated(new \DateTime());
+
+            $wishTitle = $newWish->getTitle();
+            $wishNewTitle = $censurator->purify($wishTitle);
+            $newWish->setTitle($wishNewTitle);
+
+            $wishDescription = $newWish->getDescription();
+            $wishNewDescription = $censurator->purify($wishDescription);
+            $newWish->setDescription($wishNewDescription);
 
             //declenche l'insert dans la bdd
             $entityManager->persist($newWish);
